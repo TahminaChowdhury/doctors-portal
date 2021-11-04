@@ -30,10 +30,11 @@ const services = [
 
 const Services = () => {
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1, textAlign: 'center'}}>
         <Container fixed>
+            <Typography variant="h6" component="div" sx={{ m: 2,   color: 'success.main' }}>OUR SERVICES</Typography>
+            <Typography variant="h4" component="div" sx={{ m: 5, fontWeight: 'bold'}}>Services We Provide</Typography>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-            
            {
                services.map(service => <Service 
                 key={service.name}
