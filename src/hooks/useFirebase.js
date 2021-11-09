@@ -11,6 +11,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState("");
     const [isLoading, setisLoading] = useState(true);
+    const [admin, setAdmin] = useState(false);
 
     const auth = getAuth();
 
@@ -85,6 +86,14 @@ const useFirebase = () => {
             }).then(res => res.json())
             .then(data => console.log(data))
         }
+
+        useEffect(() => {
+            fetch(`http://localhost:5000/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin));
+        },[user.email])
+
+
         // logout user
 
         const logoutUser =() => {
@@ -115,6 +124,7 @@ const useFirebase = () => {
 
     return {
         user,
+        admin,
         error,
         isLoading,
         loginWithGoogle,

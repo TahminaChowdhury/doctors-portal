@@ -28,6 +28,7 @@ import {
 import DashBoardHome from './DashBoardHome/DashBoardHome';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
 import AddDoctor from './AddDoctor/AddDoctor';
+import useAuth from '../../hooks/useAuth';
 
 const drawerWidth = 240;
 
@@ -36,7 +37,7 @@ const drawerWidth = 240;
  function DashBoard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  
+  const {admin} = useAuth()
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -54,12 +55,14 @@ const drawerWidth = 240;
       <Link to={`${url}`}>
             <Button color="inherit">DashBoard</Button>
             </Link>
-      <Link to={`${url}/makeAdmin`}>
+      {admin && <Box>
+        <Link to={`${url}/makeAdmin`}>
             <Button color="inherit">Make Admin</Button>
             </Link>
       <Link to={`${url}/addDoctor`}>
             <Button color="inherit">Add Doctor</Button>
       </Link>
+        </Box>}
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
