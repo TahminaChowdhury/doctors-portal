@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import useAuth from '../../../hooks/useAuth'
+import {Link }from 'react-router-dom'
+import { Button } from '@mui/material';
 
 
 
@@ -22,7 +24,7 @@ const Appointments = ({date}) => {
 
     return (
         <div>
-            <h2>Apoointments: {appointment.length}</h2>
+            <h2>Appointments: {appointment.length}</h2>
         <TableContainer component={Paper}>
             <Table aria-label="simple table">
                 <TableHead>
@@ -30,6 +32,7 @@ const Appointments = ({date}) => {
                     <TableCell>Name</TableCell>
                     <TableCell align="right">Schedule</TableCell>
                     <TableCell align="right">Service</TableCell>
+                    <TableCell align="right">Action</TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
@@ -43,6 +46,9 @@ const Appointments = ({date}) => {
                     </TableCell>
                     <TableCell align="right">{row.time}</TableCell>
                     <TableCell align="right">{row.serviceName}</TableCell>
+                    <TableCell align="right">{row.payment ? "Paid" : 
+                    <Link to={`/dashboard/payment/${row._id}`}><Button>Pay</Button></Link>
+                    }</TableCell>
                     </TableRow>
                 ))}
                 </TableBody>
